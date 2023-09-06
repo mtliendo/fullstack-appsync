@@ -1,16 +1,19 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from 'aws-cdk-lib'
+import { Construct } from 'constructs'
+import { createAppSyncAPI } from './api/appsync'
+import { createTable } from './tables/petsTable'
 
 export class BackendStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+	constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+		super(scope, id, props)
 
-    // The code that defines your stack goes here
+		const petsDynamoDBTable = createTable(this, {
+			tableName: 'petsDDBTable',
+		})
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'BackendQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
-  }
+		const api = createAppSyncAPI(this, {
+			apiName: 'pets-api',
+			petTable: petsDynamoDBTable,
+		})
+	}
 }

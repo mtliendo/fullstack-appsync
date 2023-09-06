@@ -1,0 +1,28 @@
+type Query {
+	getPet(petID: String!): Pet
+	listPets: [Pet]
+}
+
+type Mutation {
+	createPet(input: CreatePetInput!): Pet
+	updatePet(input: UpdatePetInput!): Pet
+	deletePet(petID: String!): Pet
+}
+
+type Pet {
+	id: ID!
+	name: String
+	type: String
+}
+
+input CreatePetInput {
+	id: ID
+	name: String
+	type: String
+}
+
+input UpdatePetInput {
+	id: ID!
+	name: String
+	type: String
+}
