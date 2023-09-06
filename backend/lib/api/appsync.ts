@@ -37,7 +37,6 @@ export const createAppSyncAPI = (scope: Construct, props: AppSyncAPIProps) => {
 
 	const listPetsResolver = petsDS.createResolver('listPetsResolver', {
 		typeName: 'Query',
-
 		fieldName: 'listPets',
 		runtime: FunctionRuntime.JS_1_0_0,
 		code: Code.fromAsset(
