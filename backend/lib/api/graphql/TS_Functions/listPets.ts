@@ -7,5 +7,5 @@ export function request() {
 }
 
 export function response(ctx: Context) {
-	return ctx.result as [Pet]
+	return ctx.result.items as [Pet]
 }

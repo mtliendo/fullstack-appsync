@@ -15,5 +15,13 @@ export class BackendStack extends cdk.Stack {
 			apiName: 'pets-api',
 			petTable: petsDynamoDBTable,
 		})
+
+		new cdk.CfnOutput(this, 'apiUrl', {
+			value: api.graphqlUrl,
+		})
+
+		new cdk.CfnOutput(this, 'apiKey', {
+			value: api.apiKey || 'No API Key',
+		})
 	}
 }
